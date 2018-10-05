@@ -13,25 +13,35 @@ namespace CardGameConsole
         private Player player2;
         private int userInput;
         private bool loop;
+        private bool gameOver = false;
 
         public UnoGame()
         {
             deck = new Deck(this);
-            player1 = new Player(this);
-            player2 = new Player(this);
+            player1 = new Player("Albert", this);
+            player2 = new Player("Karsten", this);
 
             player1.DrawCard(7);
             player2.DrawCard(7);
 
             deck.cardsRevealed.Add(deck.Draw());
 
-            ChooseCard(player1);
+            while (!gameOver)
+            {
+                ChooseCard(player1);
 
-            ChooseCard(player2);
+                ChooseCard(player2);
+
+                if (deck.cards.Count == 0)
+                {
+                    Console.WriteLine("GAME OVER!");
+                }
+            }
         }
 
         private void ChooseCard(Player player)
         {
+            Console.WriteLine("Det er " + player.name + "'s tur");
             loop = true;
             while (loop)
             {
@@ -50,6 +60,8 @@ namespace CardGameConsole
                     Console.WriteLine(player.hand[userInput] + " er lagt ned");
                     loop = false;
                     Console.WriteLine();
+                    player.hand.Remove(player.hand[userInput]);
+                    player.DrawCard();
                 }
                 else
                 {

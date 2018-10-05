@@ -10,7 +10,7 @@ namespace CardGameConsole
 {
     class Deck
     {
-        private List<Card> cards = new List<Card>();
+        public List<Card> cards = new List<Card>();
         public List<Card> cardsRevealed = new List<Card>();
         private UnoGame unoGame;
 

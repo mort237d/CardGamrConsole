@@ -9,12 +9,15 @@ namespace CardGameConsole
 {
     class Player
     {
-        public List<Card> hand = new List<Card>();
+        public List<Card> hand;
         private UnoGame unoGame;
+        public string name;
 
-        public Player(UnoGame unoGame)
+        public Player(string name, UnoGame unoGame)
         {
             this.unoGame = unoGame;
+            this.name = name;
+            hand = new List<Card>();
         }
 
         public void DrawCard()
@@ -26,7 +29,7 @@ namespace CardGameConsole
         {
             for (int i = 0; i < numberOfCards; i++)
             {
-                hand.Add(unoGame.deck.Draw());
+                DrawCard();
             }
         }
 
